@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import xLogo from "../../assets/Xlogo.png";
 import "./StartScreen.css";
 
 function StartScreen() {
-  const navigate = useNavigate();
 
   return (
     <main className="start-screen">
@@ -23,7 +21,7 @@ function StartScreen() {
         <img src={xLogo} alt="Mega Man X" className="logo" />
         <p className="subtitle">Torneo de la saga X</p>
         <p className="message">Inscripciones pronto</p>
-        <button className="x-btn" onClick={() => {}}>
+        <button className="x-btn">
           Start
         </button>
       </div>
