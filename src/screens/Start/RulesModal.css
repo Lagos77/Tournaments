@@ -1,0 +1,60 @@
+.rules-modal {
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #0d5fa3;
+    border-radius: 6px;
+    background: #0a0e14;
+    color: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .rules-modal .rules-modal__highlight {
+    padding: 0.6rem 0.8rem;
+    background: rgba(255, 215, 0, 0.12);
+    color: #ffd700;
+    font-weight: 600;
+  }
+
+  .rules-modal .rules-modal__highlight--negative {
+    background: rgba(255, 43, 43, 0.12);
+    color: #ff6b6b;
+  }
+
+  .rules-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .rules-modal h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffd700;
+    -webkit-text-stroke: 0.08rem #000;
+    paint-order: stroke fill;
+    margin: 0 0 1rem;
+  }
+
+  .rules-modal h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffd700;
+    -webkit-text-stroke: 0.08rem #000;
+    paint-order: stroke fill;
+
+  }
+  
+  .rules-modal p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #cfe4ff;
+  }
+  
+  .rules-modal .x-btn {
+    display: block;
+    margin: 0 auto;
+  }

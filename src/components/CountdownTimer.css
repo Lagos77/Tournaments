@@ -1,0 +1,43 @@
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.countdown--closed {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ff2b2b;
+  -webkit-text-stroke: 0.2rem #000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 12px rgba(255, 43, 43, 0.6);
+}
+
+.countdown__label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffd700;
+  -webkit-text-stroke: 0.1rem #000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.countdown__value {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ffd700;
+  -webkit-text-stroke: 0.3rem #000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 30px rgba(9, 227, 107, 0.6);
+}

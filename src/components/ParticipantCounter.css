@@ -1,0 +1,25 @@
+.participant-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+}
+
+.participant-count__label {
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #9fd3ff;
+  text-shadow: 0 0 6px rgba(30, 144, 255, 0.5);
+}
+
+.participant-count__number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffd700;
+  -webkit-text-stroke: 0.1rem #000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 8px rgba(30, 144, 255, 0.6);
+}
