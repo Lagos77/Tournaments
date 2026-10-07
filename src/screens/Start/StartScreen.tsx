@@ -33,7 +33,10 @@ function StartScreen() {
         <ParticipantCounter />
         <button
           className="x-btn x-btn--secondary"
-          onClick={() => dialogRef.current?.showModal()}
+          onClick={() => {
+            dialogRef.current?.showModal();
+            dialogRef.current?.scrollTo(0, 0);
+          }}
         >
           Reglas
         </button>

@@ -19,13 +19,23 @@ function MusicPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const controller = new AbortController();
+
     const start = () => {
-      hasInteracted.current = true;
-      audio.play().catch(() => undefined);
+      audio
+        .play()
+        .then(() => {
+          hasInteracted.current = true;
+          controller.abort();
+        })
+        .catch(() => undefined);
     };
 
-    document.addEventListener("pointerdown", start, { once: true });
-    return () => document.removeEventListener("pointerdown", start);
+    for (const event of ["click", "touchend", "keydown"]) {
+      document.addEventListener(event, start, { signal: controller.signal });
+    }
+
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {

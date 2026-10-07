@@ -3,7 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: cover;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-position: center;
   padding: 2rem 1.25rem;
 }
@@ -115,4 +117,10 @@
   font-family: "Orbitron", sans-serif;
   font-size: 0.9rem;
   color: #9fd3ff;
+}
+
+@media (max-width: 480px) {
+  .form-screen {
+    background-size: cover;
+  }
 }
