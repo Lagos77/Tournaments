@@ -13,7 +13,7 @@ function MusicPlayer() {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const hasInteracted = useRef(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const audio = audioRef.current;

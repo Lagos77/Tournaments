@@ -7,6 +7,7 @@ export interface TimeLeft {
   hours: number;
   minutes: number;
   seconds: number;
+  milliseconds: number;
 }
 
 function getTimeLeft(): TimeLeft | null {
@@ -18,18 +19,21 @@ function getTimeLeft(): TimeLeft | null {
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
     minutes: Math.floor((diff / (1000 * 60)) % 60),
     seconds: Math.floor((diff / 1000) % 60),
+    milliseconds: diff % 1000,
   };
 }
 
-export function useCountdown() {
+export function useCountDown() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(getTimeLeft());
-    }, 1000);
+    }, 10);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return timeLeft;

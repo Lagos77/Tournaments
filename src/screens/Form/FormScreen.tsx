@@ -1,24 +1,53 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   registrationSchema,
   type RegistrationInput,
 } from "../../schemas/registration";
-import { supabase } from "../../lib/supabaseClient";
+import { registerParticipant } from "../../lib/registerParticipant";
+import { useAvatarPreview } from "../../hooks/useAvatarPreview";
 import formBg from "../../assets/form-image.png";
+import defaultAvatar from "../../assets/default-avatar.jpg";
 import "./FormScreen.css";
 
-const emptyToNull = (value?: string) => {
-  const trimmed = value?.trim();
-  if (!trimmed) return null;
-  return trimmed;
-};
+const TEXT_FIELDS = [
+  { name: "alias", label: "Alias", placeholder: "Mega Man" },
+  { name: "country", label: "País", placeholder: "Japón" },
+  { name: "tiktok", label: "TikTok" },
+  { name: "youtube", label: "YouTube" },
+  { name: "discord", label: "Discord" },
+  { name: "twitch", label: "Twitch" },
+] as const;
+
+const AVATAR_ACCEPT = "image/jpeg,image/png,image/webp";
+
+interface FormLayoutProps {
+  children: ReactNode;
+}
+
+function FormLayout({ children }: FormLayoutProps) {
+  return (
+    <main className="form-screen" style={{ backgroundImage: `url(${formBg})` }}>
+      {children}
+    </main>
+  );
+}
+
+function SuccessMessage() {
+  return (
+    <div className="success">
+      <p className="success__title">¡Registro completo!</p>
+      <p className="success__message">Gracias por inscribirte al torneo.</p>
+    </div>
+  );
+}
 
 function FormScreen() {
   const [isSuccess, setIsSuccess] = useState(false);
   const {
     register,
+    control,
     handleSubmit,
     setError,
     formState: { errors, isSubmitting, isValid },
@@ -26,109 +55,76 @@ function FormScreen() {
     resolver: zodResolver(registrationSchema),
     mode: "onChange",
   });
+  const avatarPreview = useAvatarPreview(control);
 
-  const onSubmit = async (data: RegistrationInput) => {
-    const { error } = await supabase.from("x_torneo").insert({
-      ...data,
-      tiktok: emptyToNull(data.tiktok),
-      youtube: emptyToNull(data.youtube),
-      discord: emptyToNull(data.discord),
-      twitch: emptyToNull(data.twitch),
-    });
+  const onSubmit = async (input: RegistrationInput) => {
+    const result = await registerParticipant(input);
 
-    if (error) {
-      if (error.code === "23505") {
-        const fieldMap: Record<string, keyof RegistrationInput> = {
-          x_torneo_alias_unique: "alias",
-          x_torneo_tiktok_unique: "tiktok",
-          x_torneo_discord_unique: "discord",
-          x_torneo_youtube_unique: "youtube",
-        };
-
-        const matchedIndex = Object.keys(fieldMap).find((indexName) =>
-          error.message.includes(indexName)
-        );
-        const field = matchedIndex ? fieldMap[matchedIndex] : "root";
-
-        setError(field, { message: "Este valor ya está registrado." });
-      } else {
-        setError("root", { message: "Algo salió mal, intenta de nuevo." });
-      }
+    if (result.ok) {
+      setIsSuccess(true);
       return;
     }
-
-    setIsSuccess(true);
+    setError(result.field, { message: result.message });
   };
 
-  return (
-    <main className="form-screen" style={{ backgroundImage: `url(${formBg})` }}>
-      {isSubmitting ? (
+  if (isSubmitting) {
+    return (
+      <FormLayout>
         <div className="spinner" />
-      ) : isSuccess ? (
-        <div className="success">
-          <p className="success__title">¡Registro completo!</p>
-          <p className="success__message">Gracias por inscribirte al torneo.</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <h1 className="form-title">Inscripción</h1>
-          <label>
-            Alias
-            <input {...register("alias")} />
-            {errors.alias && (
-              <span className="error">{errors.alias.message}</span>
-            )}
-          </label>
+      </FormLayout>
+    );
+  }
 
-          <label>
-            País
-            <input {...register("country")} />
-            {errors.country && (
-              <span className="error">{errors.country.message}</span>
-            )}
-          </label>
+  if (isSuccess) {
+    return (
+      <FormLayout>
+        <SuccessMessage />
+      </FormLayout>
+    );
+  }
 
-          <label>
-            TikTok
-            <input {...register("tiktok")} />
-            {errors.tiktok && (
-              <span className="error">{errors.tiktok.message}</span>
-            )}
-          </label>
+  return (
+    <FormLayout>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <h1 className="form-title">Inscripción</h1>
 
-          <label>
-            YouTube
-            <input {...register("youtube")} />
-            {errors.youtube && (
-              <span className="error">{errors.youtube.message}</span>
-            )}
-          </label>
+        <label>
+          <img
+            className="avatar-preview"
+            src={avatarPreview ?? defaultAvatar}
+            alt="Vista previa de la foto"
+          />
+          Foto (opcional)
+          <input type="file" accept={AVATAR_ACCEPT} {...register("avatar")} />
+          {errors.avatar && (
+            <span className="error">{errors.avatar.message}</span>
+          )}
+        </label>
 
-          <label>
-            Discord
-            <input {...register("discord")} />
-            {errors.discord && (
-              <span className="error">{errors.discord.message}</span>
-            )}
-          </label>
+        {TEXT_FIELDS.map((field) => {
+          const message = errors[field.name]?.message;
 
-          <label>
-            Twitch
-            <input {...register("twitch")} />
-          </label>
+          return (
+            <label key={field.name}>
+              {field.label}
+              <input
+                {...register(field.name)}
+                placeholder={
+                  "placeholder" in field ? field.placeholder : undefined
+                }
+              />
+              {message && <span className="error">{message}</span>}
+            </label>
+          );
+        })}
 
-          {errors.root && <p className="error">{errors.root.message}</p>}
+        {errors.root && <p className="error">{errors.root.message}</p>}
 
-          <button
-            type="submit"
-            className="x-btn"
-            disabled={isSubmitting || !isValid}
-          >
-            Confirmar
-          </button>
-        </form>
-      )}
-    </main>
+        <button type="submit" className="x-btn" disabled={!isValid}>
+          Confirmar
+        </button>
+      </form>
+    </FormLayout>
   );
 }
 

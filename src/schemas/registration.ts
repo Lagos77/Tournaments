@@ -7,6 +7,19 @@ export const registrationSchema = z.object({
   youtube: z.string().optional(),
   discord: z.string().optional(),
   twitch: z.string().optional(),
+  avatar: z
+    .custom<FileList>()
+    .optional()
+    .refine(
+      (files) => (files?.item(0)?.size ?? 0) <= 2 * 1024 * 1024,
+      "La foto no puede pesar más de 2 MB."
+    )
+    .refine((files) => {
+      const file = files?.item(0);
+      return (
+        !file || ["image/jpeg", "image/png", "image/webp"].includes(file.type)
+      );
+    }, "Solo JPG, PNG o WebP."),
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;
