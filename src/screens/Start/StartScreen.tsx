@@ -7,7 +7,7 @@ import RulesModal from "./modal/RulesModal";
 import { useParticipantCount } from "../../hooks/useParticipantCount";
 import "./StartScreen.css";
 
-const DISCORD_INVITE_URL = "https://discord.gg/YOUR_INVITE";
+const DISCORD_INVITE_URL = "https://discord.gg/JT4w6sf8hQ";
 
 function StartScreen() {
   const navigate = useNavigate();
