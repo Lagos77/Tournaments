@@ -11,6 +11,7 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
   const text = `${pad(timeLeft.days)}d ${pad(timeLeft.hours)}h ${pad(
     timeLeft.minutes
   )}m ${pad(timeLeft.seconds)}s ${pad(timeLeft.milliseconds, 3)}`;
+
   if (!timeLeft) {
     return (
       <p className="countdown countdown--closed">Inscripciones cerradas</p>
@@ -22,7 +23,7 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
       <p className="countdown__label">Inscripciones cierran 4 de noviembre.</p>
       <p className="countdown__label">Tiempo restante:</p>
       <p className="countdown__value">
-        {[...text].map((char, i) => (
+        {Array.from(text).map((char, i) => (
           <span
             key={i}
             className={/\d/.test(char) ? "countdown__digit" : undefined}
