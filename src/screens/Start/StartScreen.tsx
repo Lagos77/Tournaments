@@ -5,6 +5,7 @@ import discordIcon from "../../assets/discord.svg";
 import CountdownTimer from "../../components/CountdownTimer";
 import RulesModal from "./modal/RulesModal";
 import { useParticipantCount } from "../../hooks/useParticipantCount";
+import { useLanguage } from "../../i18n/useLanguage";
 import "./StartScreen.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/JT4w6sf8hQ";
@@ -13,6 +14,7 @@ function StartScreen() {
   const navigate = useNavigate();
   const timeLeft = useCountDown();
   const total = useParticipantCount();
+  const { t } = useLanguage();
 
   return (
     <main className="start-screen">
@@ -30,14 +32,12 @@ function StartScreen() {
 
       <div className="content">
         <img src={xLogo} alt="Mega Man X" className="logo" />
-        <p className="subtitle">Torneo de la saga X</p>
-        <p className="credits">
-          Torneo realizado por Dark Lion de copas & Viva la cat
-        </p>
+        <p className="subtitle">{t("start.subtitle")}</p>
+        <p className="credits">{t("start.credits")}</p>
         <CountdownTimer timeLeft={timeLeft} />
 
         <div className="participants-box">
-          <span>Participantes inscritos</span>
+          <span>{t("start.participants")}</span>
           <strong className="participants-total">{total ?? "–"}</strong>
         </div>
 
@@ -69,7 +69,7 @@ function StartScreen() {
             void navigate("/form");
           }}
         >
-          Start
+          {t("start.start")}
         </button>
       </div>
     </main>

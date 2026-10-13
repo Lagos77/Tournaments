@@ -1,8 +1,16 @@
 import { z } from "zod";
+import type { TranslationKey } from "../i18n/translations";
+
+const ERRORS = {
+  alias: "validation.alias",
+  country: "validation.country",
+  photoSize: "validation.photoSize",
+  photoType: "validation.photoType",
+} as const satisfies Record<string, TranslationKey>;
 
 export const registrationSchema = z.object({
-  alias: z.string().trim().min(1, "El alias es obligatorio"),
-  country: z.string().trim().min(1, "El país es obligatorio"),
+  alias: z.string().trim().min(1, ERRORS.alias),
+  country: z.string().trim().min(1, ERRORS.country),
   tiktok: z.string().optional(),
   youtube: z.string().optional(),
   discord: z.string().optional(),
@@ -12,14 +20,14 @@ export const registrationSchema = z.object({
     .optional()
     .refine(
       (files) => (files?.item(0)?.size ?? 0) <= 2 * 1024 * 1024,
-      "La foto no puede pesar más de 2 MB."
+      ERRORS.photoSize
     )
     .refine((files) => {
       const file = files?.item(0);
       return (
         !file || ["image/jpeg", "image/png", "image/webp"].includes(file.type)
       );
-    }, "Solo JPG, PNG o WebP."),
+    }, ERRORS.photoType),
 });
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;

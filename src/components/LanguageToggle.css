@@ -1,0 +1,14 @@
+.language-toggle {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  padding: 0.35rem 0.7rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #0d5fa3;
+  cursor: pointer;
+}

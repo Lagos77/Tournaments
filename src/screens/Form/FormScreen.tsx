@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   registrationSchema,
@@ -7,20 +7,33 @@ import {
 } from "../../schemas/registration";
 import { registerParticipant } from "../../lib/registerParticipant";
 import { useAvatarPreview } from "../../hooks/useAvatarPreview";
+import { useLanguage } from "../../i18n/useLanguage";
+import { isTranslationKey, type TranslationKey } from "../../i18n/translations";
 import formBg from "../../assets/form-image.png";
 import defaultAvatar from "../../assets/default-avatar.jpg";
 import "./FormScreen.css";
 
-const TEXT_FIELDS = [
-  { name: "alias", label: "Alias", placeholder: "Mega Man" },
-  { name: "country", label: "País", placeholder: "Japón" },
-  { name: "tiktok", label: "TikTok" },
-  { name: "youtube", label: "YouTube" },
-  { name: "discord", label: "Discord" },
-  { name: "twitch", label: "Twitch" },
-] as const;
-
 const AVATAR_ACCEPT = "image/jpeg,image/png,image/webp";
+
+const TEXT_FIELDS = [
+  { name: "alias", label: "form.alias", placeholder: "form.aliasPlaceholder" },
+  {
+    name: "country",
+    label: "form.country",
+    placeholder: "form.countryPlaceholder",
+  },
+  { name: "tiktok", label: "form.tiktok" },
+  { name: "youtube", label: "form.youtube" },
+  { name: "discord", label: "form.discord" },
+  { name: "twitch", label: "form.twitch" },
+] as const satisfies readonly {
+  name: keyof RegistrationInput;
+  label: TranslationKey;
+  placeholder?: TranslationKey;
+}[];
+
+type TextField = (typeof TEXT_FIELDS)[number];
+type Register = UseFormRegister<RegistrationInput>;
 
 interface FormLayoutProps {
   children: ReactNode;
@@ -35,15 +48,76 @@ function FormLayout({ children }: FormLayoutProps) {
 }
 
 function SuccessMessage() {
+  const { t } = useLanguage();
+
   return (
     <div className="success">
-      <p className="success__title">¡Registro completo!</p>
-      <p className="success__message">Gracias por inscribirte al torneo.</p>
+      <p className="success__title">{t("form.successTitle")}</p>
+      <p className="success__message">{t("form.successMessage")}</p>
     </div>
   );
 }
 
+interface FieldErrorProps {
+  message?: string;
+}
+
+// Messages are translation keys (from zod or the server); anything else is shown as is.
+function FieldError({ message }: FieldErrorProps) {
+  const { t } = useLanguage();
+
+  if (!message) return null;
+  return (
+    <span className="error">
+      {isTranslationKey(message) ? t(message) : message}
+    </span>
+  );
+}
+
+interface PhotoFieldProps {
+  register: Register;
+  previewUrl: string | null;
+  error?: string;
+}
+
+function PhotoField({ register, previewUrl, error }: PhotoFieldProps) {
+  const { t } = useLanguage();
+
+  return (
+    <label>
+      {t("form.photo")}
+      <input type="file" accept={AVATAR_ACCEPT} {...register("avatar")} />
+      <img
+        className="avatar-preview"
+        src={previewUrl ?? defaultAvatar}
+        alt={t("form.photoAlt")}
+      />
+      <FieldError message={error} />
+    </label>
+  );
+}
+
+interface TextFieldProps {
+  field: TextField;
+  register: Register;
+  error?: string;
+}
+
+function TextFieldInput({ field, register, error }: TextFieldProps) {
+  const { t } = useLanguage();
+  const placeholder = "placeholder" in field ? t(field.placeholder) : undefined;
+
+  return (
+    <label>
+      {t(field.label)}
+      <input {...register(field.name)} placeholder={placeholder} />
+      <FieldError message={error} />
+    </label>
+  );
+}
+
 function FormScreen() {
+  const { t } = useLanguage();
   const [isSuccess, setIsSuccess] = useState(false);
   const {
     register,
@@ -60,11 +134,11 @@ function FormScreen() {
   const onSubmit = async (input: RegistrationInput) => {
     const result = await registerParticipant(input);
 
-    if (result.ok) {
-      setIsSuccess(true);
+    if ("messageKey" in result) {
+      setError(result.field, { message: result.messageKey });
       return;
     }
-    setError(result.field, { message: result.message });
+    setIsSuccess(true);
   };
 
   if (isSubmitting) {
@@ -85,43 +159,33 @@ function FormScreen() {
 
   return (
     <FormLayout>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <h1 className="form-title">Inscripción</h1>
+      <form
+        onSubmit={(event) => {
+          void handleSubmit(onSubmit)(event);
+        }}
+        noValidate
+      >
+        <h1 className="form-title">{t("form.title")}</h1>
 
-        <label>
-          <img
-            className="avatar-preview"
-            src={avatarPreview ?? defaultAvatar}
-            alt="Vista previa de la foto"
+        <PhotoField
+          register={register}
+          previewUrl={avatarPreview}
+          error={errors.avatar?.message}
+        />
+
+        {TEXT_FIELDS.map((field) => (
+          <TextFieldInput
+            key={field.name}
+            field={field}
+            register={register}
+            error={errors[field.name]?.message}
           />
-          Foto (opcional)
-          <input type="file" accept={AVATAR_ACCEPT} {...register("avatar")} />
-          {errors.avatar && (
-            <span className="error">{errors.avatar.message}</span>
-          )}
-        </label>
+        ))}
 
-        {TEXT_FIELDS.map((field) => {
-          const message = errors[field.name]?.message;
-
-          return (
-            <label key={field.name}>
-              {field.label}
-              <input
-                {...register(field.name)}
-                placeholder={
-                  "placeholder" in field ? field.placeholder : undefined
-                }
-              />
-              {message && <span className="error">{message}</span>}
-            </label>
-          );
-        })}
-
-        {errors.root && <p className="error">{errors.root.message}</p>}
+        <FieldError message={errors.root?.message} />
 
         <button type="submit" className="x-btn" disabled={!isValid}>
-          Confirmar
+          {t("form.confirm")}
         </button>
       </form>
     </FormLayout>

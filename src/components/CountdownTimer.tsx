@@ -1,4 +1,5 @@
 import type { TimeLeft } from "../hooks/useCountDown";
+import { useLanguage } from "../i18n/useLanguage";
 import "./CountdownTimer.css";
 
 interface CountdownTimerProps {
@@ -8,9 +9,11 @@ interface CountdownTimerProps {
 const pad = (value: number, length = 2) => String(value).padStart(length, "0");
 
 function CountdownTimer({ timeLeft }: CountdownTimerProps) {
+  const { t } = useLanguage();
+
   if (!timeLeft) {
     return (
-      <p className="countdown countdown--closed">Inscripciones cerradas</p>
+      <p className="countdown countdown--closed">{t("countdown.closed")}</p>
     );
   }
 
@@ -20,8 +23,8 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
 
   return (
     <div className="countdown">
-      <p className="countdown__label">Inscripciones cierran 4 de noviembre.</p>
-      <p className="countdown__label">Tiempo restante:</p>
+      <p className="countdown__label">{t("countdown.closesOn")}</p>
+      <p className="countdown__label">{t("countdown.remaining")}</p>
       <p className="countdown__value">
         {Array.from(text).map((char, i) => (
           <span
@@ -33,9 +36,9 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
         ))}
       </p>
       <p className="countdown__label">
-        El torneo comienza el 7 de noviembre.
+        {t("countdown.starts")}
         <br />
-        La hora exacta se anunciará más adelante.
+        {t("countdown.timeAnnounced")}
       </p>
     </div>
   );

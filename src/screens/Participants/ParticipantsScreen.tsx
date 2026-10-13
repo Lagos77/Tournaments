@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
+import { useLanguage } from "../../i18n/useLanguage";
 import defaultAvatar from "../../assets/default-avatar.jpg";
 import "./ParticipantsScreen.css";
 
@@ -23,6 +24,7 @@ const SOCIALS = [
 ] as const;
 
 function ParticipantsScreen() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [participants, setParticipants] = useState<Participant[] | null>(null);
   const [hasError, setHasError] = useState(false);
@@ -55,15 +57,17 @@ function ParticipantsScreen() {
   return (
     <main className="participants-screen">
       <header className="participants-screen__header">
-        <h1 className="participants-screen__title">Participantes</h1>
+        <h1 className="participants-screen__title">
+          {t("participants.title")}
+        </h1>
         {participants && (
           <p className="participants-screen__count">{participants.length}</p>
         )}
       </header>
 
-      {hasError && <p>No se pudo cargar la lista.</p>}
+      {hasError && <p>{t("participants.loadError")}</p>}
       {!hasError && !participants && <div className="spinner" />}
-      {participants?.length === 0 && <p>Aún no hay inscritos.</p>}
+      {participants?.length === 0 && <p>{t("participants.empty")}</p>}
 
       {participants && participants.length > 0 && (
         <ul className="participants-list">
@@ -94,7 +98,9 @@ function ParticipantsScreen() {
                     }}
                     aria-expanded={isOpen}
                     aria-label={
-                      isOpen ? "Ocultar redes sociales" : "Ver redes sociales"
+                      isOpen
+                        ? t("participants.hideSocials")
+                        : t("participants.showSocials")
                     }
                   >
                     <svg viewBox="0 0 24 24">
@@ -108,7 +114,7 @@ function ParticipantsScreen() {
                     <ul className="participant-card__socials">
                       <li>
                         <span className="participant-card__social-label">
-                          País
+                          {t("form.country")}
                         </span>
                         <span>{p.country}</span>
                       </li>
@@ -122,7 +128,7 @@ function ParticipantsScreen() {
                       ))}
                       {socials.length === 0 && (
                         <li className="participant-card__empty">
-                          Sin redes sociales
+                          {t("participants.noSocials")}
                         </li>
                       )}
                     </ul>
@@ -140,7 +146,7 @@ function ParticipantsScreen() {
           void navigate("/");
         }}
       >
-        Volver
+        {t("participants.back")}
       </button>
     </main>
   );

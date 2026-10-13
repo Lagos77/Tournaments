@@ -1,5 +1,6 @@
 import type { PostgrestError } from "@supabase/supabase-js";
 import type { RegistrationInput } from "../schemas/registration";
+import type { TranslationKey } from "../i18n/translations";
 import { supabase } from "./supabaseClient";
 
 const AVATAR_BUCKET = "avatars";
@@ -13,7 +14,11 @@ const UNIQUE_INDEX_FIELDS: Record<string, keyof RegistrationInput> = {
 
 export type RegistrationResult =
   | { ok: true }
-  | { ok: false; field: keyof RegistrationInput | "root"; message: string };
+  | {
+      ok: false;
+      field: keyof RegistrationInput | "root";
+      messageKey: TranslationKey;
+    };
 
 const emptyToNull = (value?: string) => {
   const trimmed = value?.trim();
@@ -23,8 +28,8 @@ const emptyToNull = (value?: string) => {
 
 const fail = (
   field: keyof RegistrationInput | "root",
-  message: string
-): RegistrationResult => ({ ok: false, field, message });
+  messageKey: TranslationKey
+): RegistrationResult => ({ ok: false, field, messageKey });
 
 function toFailure(error: PostgrestError): RegistrationResult {
   if (error.code === "23505") {
@@ -32,9 +37,9 @@ function toFailure(error: PostgrestError): RegistrationResult {
       error.message.includes(name)
     );
     const field = indexName ? UNIQUE_INDEX_FIELDS[indexName] : "root";
-    return fail(field, "Este valor ya está registrado.");
+    return fail(field, "error.duplicate");
   }
-  return fail("root", "Algo salió mal, intenta de nuevo.");
+  return fail("root", "error.generic");
 }
 
 async function uploadAvatar(file: File): Promise<string | null> {
@@ -57,7 +62,7 @@ export async function registerParticipant({
   const avatarPath = file ? await uploadAvatar(file) : null;
 
   if (file && !avatarPath) {
-    return fail("root", "No se pudo subir la foto, intenta de nuevo.");
+    return fail("root", "error.upload");
   }
 
   const { error } = await supabase.from("x_torneo").insert({

@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./i18n/LanguageProvider";
+import LanguageToggle from "./components/LanguageToggle";
 import StartScreen from "./screens/Start/StartScreen";
 import FormScreen from "./screens/Form/FormScreen";
 import ParticipantsScreen from "./screens/Participants/ParticipantsScreen";
@@ -6,14 +8,17 @@ import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
   return (
-    <BrowserRouter>
-      <MusicPlayer />
-      <Routes>
-        <Route path="/" element={<StartScreen />} />
-        <Route path="/form" element={<FormScreen />} />
-        <Route path="/participants" element={<ParticipantsScreen />} />
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <MusicPlayer />
+        <LanguageToggle />
+        <Routes>
+          <Route path="/" element={<StartScreen />} />
+          <Route path="/form" element={<FormScreen />} />
+          <Route path="/participants" element={<ParticipantsScreen />} />
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
