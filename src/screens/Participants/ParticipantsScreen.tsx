@@ -38,7 +38,7 @@ function ParticipantsScreen() {
         .select(
           "id, alias, country, avatar_url, tiktok, youtube, discord, twitch"
         )
-        .order("id")
+        .order("id", { ascending: false })
         .overrideTypes<Participant[]>();
 
       if (error) {
