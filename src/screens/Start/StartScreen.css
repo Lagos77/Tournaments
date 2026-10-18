@@ -35,9 +35,10 @@
 }
 
 .bg-video {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: scale-down;
+  object-fit: cover;
   object-position: center;
 }
 
@@ -116,11 +117,6 @@
   font-size: 1rem;
 }
 
-.x-btn--participants {
-  padding: 1.2rem 2rem;
-  font-size: 0.7rem;
-}
-
 .x-btn--secondary {
   --btn-bg: #d11e1e;
   --btn-edge: #7a0d5f;
@@ -132,27 +128,11 @@
   text-decoration: none;
 }
 
-/* .x-btn--participants {
+.x-btn--participants {
   --btn-bg: #ec4899;
   --btn-edge: #a82868;
-} */
-
-.participants-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  font-family: "Orbitron", sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #eedb10;
-  paint-order: stroke fill;
-}
-
-.participants-total {
-  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
 }
 
 .x-btn__icon {
@@ -184,5 +164,10 @@
   .x-btn--discord {
     padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
+  }
+
+  .x-btn--participants {
+    padding: 1rem 0.5rem;
+    font-size: 0.6rem;
   }
 }

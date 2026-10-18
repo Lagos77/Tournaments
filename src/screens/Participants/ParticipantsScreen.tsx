@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
 import { useLanguage } from "../../i18n/useLanguage";
 import defaultAvatar from "../../assets/default-avatar.jpg";
+import formBg from "../../assets/form-image.png";
 import "./ParticipantsScreen.css";
 
 interface Participant {
@@ -56,6 +57,11 @@ function ParticipantsScreen() {
 
   return (
     <main className="participants-screen">
+         <div
+      className="participants-screen__bg"
+      style={{ backgroundImage: `url(${formBg})` }}
+    />
+    
       <header className="participants-screen__header">
         <h1 className="participants-screen__title">
           {t("participants.title")}

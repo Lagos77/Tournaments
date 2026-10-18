@@ -41,7 +41,11 @@ interface FormLayoutProps {
 
 function FormLayout({ children }: FormLayoutProps) {
   return (
-    <main className="form-screen" style={{ backgroundImage: `url(${formBg})` }}>
+    <main className="form-screen">
+      <div
+        className="form-screen__bg"
+        style={{ backgroundImage: `url(${formBg})` }}
+      />
       {children}
     </main>
   );

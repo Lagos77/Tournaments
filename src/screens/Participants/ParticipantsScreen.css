@@ -1,12 +1,27 @@
 .participants-screen {
+  position: relative;
+  z-index: 0;
   min-height: 100dvh;
   padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1.25rem;
-  background: #000;
   color: #cfe4ff;
+}
+
+.participants-screen__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100lvh;
+  z-index: -1;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .participants-screen__header {
