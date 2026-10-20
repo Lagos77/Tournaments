@@ -1,0 +1,77 @@
+.group-chip {
+  position: relative;
+  flex: none;
+  width: var(--chip);
+  height: var(--chip);
+  box-sizing: border-box;
+  border: 2px solid #00e5ff;
+  border-radius: 50%;
+  background: #05080f;
+  direction: ltr;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.group-chip:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 3px;
+}
+
+.group-chip img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.group-chip__label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.15rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ffd700;
+  white-space: nowrap;
+}
+
+.group-chip--next {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+.group-chip--eliminated {
+  border-color: #ff3b3b;
+}
+
+.group-chip--eliminated img {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.group-chip__cross {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #ff3b3b;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2px #000);
+}
+
+.group-chip--empty {
+  display: grid;
+  place-items: center;
+  border-style: dashed;
+  border-color: #3a4d78;
+  color: #3a4d78;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  cursor: default;
+}

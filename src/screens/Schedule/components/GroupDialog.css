@@ -1,0 +1,95 @@
+.group-dialog {
+  width: calc(100% - 2rem);
+  max-width: 320px;
+  max-height: 90dvh;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #cfe4ff;
+
+  /* Closed state, which is also the fade-out target */
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.9);
+  transition: opacity 0.25s ease-in, transform 0.25s ease-in,
+    overlay 0.25s allow-discrete, display 0.25s allow-discrete;
+}
+
+/* Open state, which is also the pop-in */
+.group-dialog[open] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease-out,
+    transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    overlay 0.3s allow-discrete, display 0.3s allow-discrete;
+}
+
+@starting-style {
+  .group-dialog[open] {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.9);
+  }
+}
+
+.group-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.25s ease, overlay 0.25s allow-discrete,
+    display 0.25s allow-discrete;
+}
+
+.group-dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@starting-style {
+  .group-dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.group-dialog__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Players drop in one by one */
+.group-dialog[open] .group-players > li {
+  animation: group-player-in 0.35s ease-out backwards;
+  animation-delay: 0.43s;
+}
+
+.group-dialog[open] .group-players > li:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.group-dialog[open] .group-players > li:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.group-dialog[open] .group-players > li:nth-child(3) {
+  animation-delay: 0.29s;
+}
+
+.group-dialog[open] .group-players > li:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+@keyframes group-player-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group-dialog,
+  .group-dialog[open],
+  .group-dialog::backdrop {
+    transition: none;
+  }
+
+  .group-dialog[open] .group-players > li {
+    animation: none;
+  }
+}
