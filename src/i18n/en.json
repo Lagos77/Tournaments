@@ -56,5 +56,9 @@
   "participants.hideSocials": "Hide social media",
   "participants.showSocials": "Show social media",
   "participants.noSocials": "No social media",
-  "participants.back": "Back"
+  "participants.back": "Back",
+  "schedule.title": "Eliminations",
+  "schedule.loadError": "The schedule couldn't be loaded.",
+  "schedule.empty": "Groups haven't been set yet.",
+  "schedule.group": "Group"
 }
