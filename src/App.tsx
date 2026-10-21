@@ -5,6 +5,7 @@ import StartScreen from "./screens/Start/StartScreen";
 import FormScreen from "./screens/Form/FormScreen";
 import ParticipantsScreen from "./screens/Participants/ParticipantsScreen";
 import MusicPlayer from "./components/MusicPlayer";
+import ScheduleScreen from "./screens/Schedule/ScheduleScreen";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<StartScreen />} />
           <Route path="/form" element={<FormScreen />} />
           <Route path="/participants" element={<ParticipantsScreen />} />
+          <Route path="/schedule" element={<ScheduleScreen />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

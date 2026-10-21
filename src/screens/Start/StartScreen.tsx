@@ -34,6 +34,15 @@ function StartScreen() {
         <p className="credits">{t("start.credits")}</p>
         <CountdownTimer timeLeft={timeLeft} />
 
+        {/* <button
+  className="glow-button"
+  onClick={() => {
+    void navigate("/schedule");
+  }}
+>
+  Eliminatorias
+</button> */}
+
         <button
           className="x-btn x-btn--participants"
           onClick={() => {

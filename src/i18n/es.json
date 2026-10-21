@@ -56,5 +56,9 @@
   "participants.hideSocials": "Ocultar redes sociales",
   "participants.showSocials": "Ver redes sociales",
   "participants.noSocials": "Sin redes sociales",
-  "participants.back": "Volver"
+  "participants.back": "Volver",
+  "schedule.title": "Eliminatorias",
+  "schedule.loadError": "No se pudo cargar el calendario.",
+  "schedule.empty": "Los grupos aún no están definidos.",
+  "schedule.group": "Grupo"
 }
