@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useForm, type UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import DiscordButton from "../../components/DiscordButton";
 import {
   registrationSchema,
   type RegistrationInput,
@@ -58,6 +59,8 @@ function SuccessMessage() {
     <div className="success">
       <p className="success__title">{t("form.successTitle")}</p>
       <p className="success__message">{t("form.successMessage")}</p>
+      <p className="success__message">{t("form.successDiscord")}</p>
+      <DiscordButton />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import "./MusicPlayer.css";
 const DEFAULT_TRACK = "/start.mp3";
 const TRACKS: Partial<Record<string, string>> = {
   "/form": "/data.mp3",
+  "/participants": "/data.mp3",
 };
 
 function MusicPlayer() {

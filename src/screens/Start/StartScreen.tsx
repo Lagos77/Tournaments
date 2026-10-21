@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useCountDown } from "../../hooks/useCountDown";
+import DiscordButton from "../../components/DiscordButton";
 import xLogo from "../../assets/Xlogo.png";
-import discordIcon from "../../assets/discord.svg";
 import CountdownTimer from "../../components/CountdownTimer";
 import RulesModal from "./modal/RulesModal";
 import { useLanguage } from "../../i18n/useLanguage";
 import "./StartScreen.css";
-
-const DISCORD_INVITE_URL = "https://discord.gg/JT4w6sf8hQ";
 
 function StartScreen() {
   const navigate = useNavigate();
@@ -54,15 +52,7 @@ function StartScreen() {
 
         <RulesModal />
 
-        <a
-          className="x-btn x-btn--discord"
-          href={DISCORD_INVITE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={discordIcon} alt="" className="x-btn__icon" />
-          Discord
-        </a>
+        <DiscordButton />
 
         <button
           className="x-btn"

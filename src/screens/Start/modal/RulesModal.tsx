@@ -26,6 +26,7 @@ function RulesModal() {
         <p>{t("rules.groupCompetition")}</p>
         <p>{t("rules.lowestWins")}</p>
         <p>{t("rules.finalTime")}</p>
+        <p className="rules-modal__highlight">{t("rules.recommendation")}</p>
         <p>{t("rules.draw")}</p>
         <p className="rules-modal__highlight">{t("rules.newRule")}</p>
 
