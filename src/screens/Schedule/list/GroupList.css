@@ -1,0 +1,87 @@
+.group-list {
+  width: 100%;
+  max-width: 36rem;
+  margin-top: 2rem;
+}
+
+.group-list__title {
+  margin: 0 0 0.75rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffd700;
+}
+
+.group-list__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.group-list__row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #0d5fa3;
+  border-radius: 4px;
+  background: rgba(10, 14, 20, 0.85);
+  color: #fff;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.group-list__row:hover {
+  border-color: #38bdf8;
+}
+
+.group-list__row--next {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
+}
+
+.group-list__row--eliminated {
+  opacity: 0.55;
+}
+
+.group-list__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid #0d5fa3;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.group-list__name {
+  flex: 1;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.group-list__tag {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.group-list__tag--next {
+  color: #ffd700;
+}
+
+.group-list__tag--eliminated {
+  color: #ff2d2d;
+}
+
+.group-list__arrow {
+  font-size: 1.25rem;
+  color: #9fd3ff;
+}

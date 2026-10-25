@@ -5,7 +5,7 @@ import StartScreen from "./screens/Start/StartScreen";
 import FormScreen from "./screens/Form/FormScreen";
 import ParticipantsScreen from "./screens/Participants/ParticipantsScreen";
 import MusicPlayer from "./components/MusicPlayer";
-import ScheduleScreen from "./screens/Schedule/ScheduleScreen";
+import ScheduleScreen from "./screens/Schedule/main/ScheduleScreen";
 
 function App() {
   return (

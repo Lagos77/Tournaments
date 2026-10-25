@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useLanguage } from "../../../i18n/useLanguage";
-import GroupCard from "../GroupCard";
-import type { Group } from "./Bracket";
+import GroupCard from "../card/GroupCard";
+import type { Group } from "../components/Bracket";
 import "./GroupDialog.css";
 
 interface GroupDialogProps {

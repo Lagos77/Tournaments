@@ -17,7 +17,7 @@ function StartScreen() {
       <div className="video-wrapper">
         <video
           className="bg-video"
-          src="/background-video.mp4"
+          src="/glitchvideo.mp4"
           autoPlay
           loop
           muted

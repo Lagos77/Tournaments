@@ -1,0 +1,48 @@
+.link-btn {
+  --glow: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--glow);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 6px var(--glow),
+    0 0 16px color-mix(in srgb, var(--glow) 60%, transparent),
+    inset 0 0 8px color-mix(in srgb, var(--glow) 35%, transparent);
+}
+
+.link-btn--youtube {
+  --glow: #ff2d2d;
+}
+
+.link-btn--tiktok {
+  --glow: #25f4ee;
+}
+
+.link-btn--discord {
+  --glow: #5865f2;
+}
+
+.link-btn__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.link-btn.link-btn--disabled {
+  --glow: #6b6b6b;
+  color: #8a8a8a;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.link-btn--disabled .link-btn__icon {
+  opacity: 0.5;
+}

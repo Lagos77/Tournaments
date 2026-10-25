@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useLanguage } from "../../i18n/useLanguage";
+import { useLanguage } from "../../../i18n/useLanguage";
 import PlayerRow from "./PlayerRow";
-import { getGroupAvatar } from "./components/groupAvatar";
+import { getGroupAvatar } from "../components/groupAvatar";
 import "./GroupCard.css";
 
 export interface GroupPlayer {
@@ -60,9 +60,12 @@ function GroupCard({ group, players }: GroupCardProps) {
           <img className="group-avatar" src={getGroupAvatar(group)} alt="" />
           {isEliminated && <EliminatedCross />}
         </span>
-        <span className="group-card-title">
-          {t("schedule.group")} {group}
-        </span>
+
+        <div className="group-card-heading">
+          <span className="group-card-title">
+            {t("schedule.group")} {group}
+          </span>
+        </div>
       </div>
 
       <ul className="group-players">

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./MusicPlayer.css";
 
-const DEFAULT_TRACK = "/start.mp3";
+const DEFAULT_TRACK = "/virus.mp3";
 const TRACKS: Partial<Record<string, string>> = {
   "/form": "/data.mp3",
   "/participants": "/data.mp3",

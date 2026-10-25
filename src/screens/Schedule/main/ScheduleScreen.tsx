@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../lib/supabaseClient";
-import { useLanguage } from "../../i18n/useLanguage";
-import Bracket from "./components/BracketTree";
-import GroupDialog from "./components/GroupDialog";
-
+import { supabase } from "../../../lib/supabaseClient";
+import { useLanguage } from "../../../i18n/useLanguage";
+import GroupList from "../list/GroupList";
+import GroupDialog from "../dialog/GroupDialog";
+import MatchList from "../../../components/Matchlist";
+import LinkButton from "../../../buttons/LinkButton";
+import youtubeIcon from "../../../assets/youtube.svg";
+import tiktokIcon from "../../../assets/tiktok.svg";
 import {
-  BRACKET_SIZES,
   toGroups,
   type Group,
   type ScheduledPlayer,
-} from "./components/Bracket";
+} from "../components/Bracket";
 import "./ScheduleScreen.css";
 
 const SCHEDULE_COLUMNS =
   "id, alias, country, avatar_url, tiktok, youtube, discord, twitch, group, is_next, eliminated";
+
+const IS_YOUTUBE_LIVE = false;
+const IS_TIKTOK_LIVE = false;
 
 function useScheduledPlayers() {
   const [players, setPlayers] = useState<ScheduledPlayer[] | null>(null);
@@ -56,18 +61,48 @@ function ScheduleScreen() {
     if (!players) return <div className="spinner" />;
 
     const groups = toGroups(players);
-    if (!BRACKET_SIZES.includes(groups.length)) {
-      return <p>{t("schedule.empty")}</p>;
-    }
+    if (groups.length === 0) return <p>{t("schedule.empty")}</p>;
 
-    return <Bracket groups={groups} onSelect={setSelectedGroup} />;
+    return <GroupList groups={groups} onSelect={setSelectedGroup} />;
   };
 
   return (
     <main className="schedule-screen">
       <h1 className="schedule-title">{t("schedule.title")}</h1>
 
+      <nav className="stream-links">
+        <div className="stream-link">
+          <LinkButton
+            variant="youtube"
+            icon={youtubeIcon}
+            href="https://www.youtube.com/@your-channel"
+            disabled={!IS_YOUTUBE_LIVE}
+          >
+            YouTube
+          </LinkButton>
+          {IS_YOUTUBE_LIVE && (
+            <span className="stream-link__live">{t("schedule.live")}</span>
+          )}
+        </div>
+
+        <div className="stream-link">
+          <LinkButton
+            variant="tiktok"
+            icon={tiktokIcon}
+            href="https://www.tiktok.com/@your-channel"
+            disabled={!IS_TIKTOK_LIVE}
+          >
+            TikTok
+          </LinkButton>
+          {IS_TIKTOK_LIVE && (
+            <span className="stream-link__live">{t("schedule.live")}</span>
+          )}
+        </div>
+      </nav>
+
       {renderContent()}
+
+      <MatchList />
 
       <GroupDialog group={selectedGroup} onClose={closeDialog} />
     </main>

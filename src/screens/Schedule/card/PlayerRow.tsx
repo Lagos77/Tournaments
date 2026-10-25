@@ -1,5 +1,5 @@
-import { useLanguage } from "../../i18n/useLanguage";
-import defaultAvatar from "../../assets/default-avatar.jpg";
+import { useLanguage } from "../../../i18n/useLanguage";
+import defaultAvatar from "../../../assets/default-avatar.jpg";
 import type { GroupPlayer } from "./GroupCard";
 
 const SOCIALS = [

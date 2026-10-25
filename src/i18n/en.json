@@ -30,7 +30,7 @@
   "rules.gamesTitle": "Allowed games",
   "rules.gamesAllowed": "Allowed games and versions:",
   "rules.gamesList": "(X1-X8 JPN), X4 US, Xtreme 1, Xtreme 2.",
-  "rules.gamesBanned": "No mods and no Legacy Collection.\nNo IGT for X5 & X6.\nNo password glitch X1.",
+  "rules.gamesBanned": "No mods.\nNo Legacy Collection (except X7).\nNo IGT for X5 & X6.\nNo password glitch X1.",
   "rules.close": "Close",
 
   "form.title": "Registration",
@@ -68,5 +68,13 @@
   "schedule.title": "Eliminations",
   "schedule.loadError": "The schedule couldn't be loaded.",
   "schedule.empty": "Groups haven't been set yet.",
-  "schedule.group": "Group"
+  "schedule.group": "Group",
+  "schedule.live": "Live",
+  "schedule.round": "Round",
+  "schedule.played": "Played",
+  "schedule.category": "Category",
+  "schedule.groups": "Groups",
+  "schedule.eliminated": "Eliminated",
+  "schedule.next": "Next",
+  "schedule.matches": "Upcoming matches"
 }
