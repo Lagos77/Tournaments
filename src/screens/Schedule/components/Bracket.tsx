@@ -2,11 +2,13 @@ import type { GroupPlayer } from "../card/GroupCard";
 
 export interface ScheduledPlayer extends GroupPlayer {
   group: number;
+  games_played: string[] | null;
+  categories_played: string[] | null;
 }
 
 export interface Group {
   number: number;
-  players: GroupPlayer[];
+  players: ScheduledPlayer[];
 }
 
 export function isEliminated(group: Group) {
@@ -21,7 +23,7 @@ export function isNext(group: Group) {
 }
 
 export function toGroups(players: ScheduledPlayer[]): Group[] {
-  const membersByGroup = new Map<number, GroupPlayer[]>();
+  const membersByGroup = new Map<number, ScheduledPlayer[]>();
 
   for (const player of players) {
     const members = membersByGroup.get(player.group) ?? [];

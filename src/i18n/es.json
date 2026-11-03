@@ -70,5 +70,6 @@
   "schedule.groups": "Grupos",
   "schedule.eliminated": "Eliminado",
   "schedule.next": "Siguiente",
-  "schedule.matches": "Próximos enfrentamientos"
+  "schedule.matches": "Próximos enfrentamientos",
+  "schedule.tbd": "Por definir"
 }

@@ -76,5 +76,6 @@
   "schedule.groups": "Groups",
   "schedule.eliminated": "Eliminated",
   "schedule.next": "Next",
-  "schedule.matches": "Upcoming matches"
+  "schedule.matches": "Upcoming matches",
+  "schedule.tbd": "To be decided"
 }

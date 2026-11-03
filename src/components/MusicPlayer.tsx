@@ -6,6 +6,7 @@ const DEFAULT_TRACK = "/virus.mp3";
 const TRACKS: Partial<Record<string, string>> = {
   "/form": "/data.mp3",
   "/participants": "/data.mp3",
+  "/schedule": "/matches.mp3",
 };
 
 function MusicPlayer() {

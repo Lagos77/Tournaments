@@ -23,10 +23,19 @@
 }
 
 .match-list__row {
+  display: block;
+  width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid #0d5fa3;
   border-radius: 4px;
   background: rgba(10, 14, 20, 0.85);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.match-list__row:hover {
+  border-color: #38bdf8;
 }
 
 .match-list__versus {
@@ -44,8 +53,8 @@
 }
 
 .match-list__avatar {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border: 1px solid #0d5fa3;
   border-radius: 50%;
   object-fit: cover;
@@ -53,7 +62,7 @@
 
 .match-list__label {
   font-family: "Orbitron", sans-serif;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
 }
@@ -61,7 +70,7 @@
 .match-list__vs {
   align-self: center;
   font-family: "Orbitron", sans-serif;
-  font-size: 0.8rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #ffd700;
 }
@@ -70,6 +79,6 @@
   display: block;
   margin-top: 0.5rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #b8c4e0;
 }
