@@ -6,7 +6,7 @@ interface CountdownTimerProps {
   timeLeft: TimeLeft | null;
 }
 
-const pad = (value: number, length = 2) => String(value).padStart(length, "0");
+//const pad = (value: number, length = 2) => String(value).padStart(length, "0");
 
 function CountdownTimer({ timeLeft }: CountdownTimerProps) {
   const { t } = useLanguage();
@@ -17,9 +17,9 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
     );
   }
 
-  const text = `${pad(timeLeft.days)}d ${pad(timeLeft.hours)}h ${pad(
-    timeLeft.minutes
-  )}m ${pad(timeLeft.seconds)}s ${pad(timeLeft.milliseconds, 3)}`;
+  //const text = `${pad(timeLeft.days)}d ${pad(timeLeft.hours)}h ${pad(
+  //  timeLeft.minutes
+  //)}m ${pad(timeLeft.seconds)}s ${pad(timeLeft.milliseconds, 3)}`;
 
   return (
     <div className="countdown">
