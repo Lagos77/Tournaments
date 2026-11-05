@@ -76,3 +76,10 @@
   height: 1.25rem;
   filter: brightness(0) invert(1);
 }
+
+.schedule-message {
+  margin-top: 2rem;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+  color: #b8c4e0;
+}

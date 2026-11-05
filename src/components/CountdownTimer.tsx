@@ -23,7 +23,7 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
 
   return (
     <div className="countdown">
-      <p className="countdown__label">{t("countdown.closesOn")}</p>
+     {/* <p className="countdown__label">{t("countdown.closesOn")}</p> 
       <p className="countdown__label">{t("countdown.remaining")}</p>
       <p className="countdown__value">
         {Array.from(text).map((char, i) => (
@@ -33,13 +33,16 @@ function CountdownTimer({ timeLeft }: CountdownTimerProps) {
           >
             {char}
           </span>
+          
         ))}
       </p>
+      */}
       <p className="countdown__label">
         {t("countdown.starts")}
         <br />
         {t("countdown.timeAnnounced")}
       </p>
+      
     </div>
   );
 }

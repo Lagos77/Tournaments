@@ -17,7 +17,7 @@ function StartScreen() {
       <div className="video-wrapper">
         <video
           className="bg-video"
-          src="/glitchvideo.mp4"
+          src="/background-video.mp4"
           autoPlay
           loop
           muted
@@ -32,15 +32,16 @@ function StartScreen() {
         <p className="credits">{t("start.credits")}</p>
         <CountdownTimer timeLeft={timeLeft} />
 
-        {/* <button
-  className="glow-button"
-  onClick={() => {
-    void navigate("/schedule");
-  }}
->
-  Eliminatorias
-</button> */}
+        <button
+          className="x-btn"
+          onClick={() => {
+            void navigate("/schedule");
+          }}
+        >
+          {t("start.tournament")}
+        </button>
 
+        {/*
         <button
           className="x-btn x-btn--participants"
           onClick={() => {
@@ -49,11 +50,13 @@ function StartScreen() {
         >
           {t("start.participants")}
         </button>
+               */}
 
         <RulesModal />
 
         <DiscordButton />
 
+        {/*
         <button
           className="x-btn"
           disabled={!timeLeft}
@@ -63,6 +66,7 @@ function StartScreen() {
         >
           {t("start.start")}
         </button>
+        */}
       </div>
     </main>
   );

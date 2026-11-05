@@ -1,0 +1,102 @@
+.tournament-bracket {
+  width: 100%;
+  max-width: 36rem;
+  margin-top: 2rem;
+}
+
+.tournament-bracket__title {
+  margin: 0 0 0.75rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffd700;
+}
+
+.tournament-bracket__scroll {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.tournament-bracket__scroll > .bracket-node {
+  margin-inline: auto;
+}
+
+.bracket-node {
+  --link: 1rem;
+  --line: #3a4d78;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.bracket-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  width: 3.25rem;
+}
+
+.bracket-slot__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid #0d5fa3;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bracket-slot__label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+}
+
+.bracket-feeders {
+  position: relative;
+  display: flex;
+  padding-bottom: var(--link);
+}
+
+.bracket-feeders::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: var(--link);
+  border-left: 2px solid var(--line);
+}
+
+.bracket-feeder {
+  position: relative;
+  padding: 0 0.25rem var(--link);
+}
+
+.bracket-feeder::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid var(--line);
+}
+
+.bracket-feeder:first-child::before {
+  left: 50%;
+}
+
+.bracket-feeder:last-child::before {
+  right: 50%;
+}
+
+.bracket-feeder::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: var(--link);
+  border-left: 2px solid var(--line);
+}

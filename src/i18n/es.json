@@ -1,10 +1,15 @@
 {
   "start.subtitle": "Torneo de la saga X",
-  "start.credits": "Torneo realizado por Dark Lion de copas & Viva la cat",
+  "start.credits": "Torneo realizado por\nDark Lion de copas & Viva la cat",
   "start.participants": "Lista de participantes",
   "start.start": "Start",
+
+  "countdown.closed": "¡El enfrentamiento está en vivo!\nPresiona \"Ver torneo\" para ir a la transmisión.",
   "countdown.closesOn": "Las inscripciones cierran el 4 de noviembre.",
   "countdown.remaining": "Tiempo restante:",
+  "countdown.starts": "El torneo comienza el 7-8 de noviembre.",
+  "countdown.timeAnnounced": "La hora exacta se anunciará más adelante.",
+
   "rules.button": "Reglas",
   "rules.title": "Reglas",
   "rules.groupCompetition": "Esta es una competencia por grupos.",
@@ -27,6 +32,7 @@
   "rules.gamesList": "(X1-X8 JPN), X4 US, Xtreme 1, Xtreme 2.",
   "rules.gamesBanned": "Sin mods.\nSin Legacy Collection (excepto X7).\nSin IGT en X5 y X6.\nSin password glitch en X1.",
   "rules.close": "Cerrar",
+
   "form.title": "Inscripción",
   "form.photo": "Foto (opcional)",
   "form.photoAlt": "Vista previa de la foto",
@@ -42,9 +48,7 @@
   "form.successTitle": "¡Registro completo!",
   "form.successMessage": "Gracias por inscribirte al torneo.",
   "form.successDiscord": "Únete a nuestro grupo de Discord para enterarte de cuándo se formarán los grupos y recibir más información.",
-  "countdown.closed": "Inscripciones cerradas",
-  "countdown.starts": "El torneo comienza el 7 de noviembre.",
-  "countdown.timeAnnounced": "La hora exacta se anunciará más adelante.",
+
   "error.duplicate": "Este valor ya está registrado.",
   "error.generic": "Algo salió mal, intenta de nuevo.",
   "error.upload": "No se pudo subir la foto, intenta de nuevo.",
@@ -52,6 +56,7 @@
   "validation.country": "El país es obligatorio",
   "validation.photoSize": "La foto no puede pesar más de 2 MB.",
   "validation.photoType": "Solo JPG, PNG o WebP.",
+
   "participants.title": "Participantes",
   "participants.loadError": "No se pudo cargar la lista.",
   "participants.empty": "Aún no hay inscritos.",
@@ -59,6 +64,7 @@
   "participants.showSocials": "Ver redes sociales",
   "participants.noSocials": "Sin redes sociales",
   "participants.back": "Volver",
+
   "schedule.title": "Eliminatorias",
   "schedule.loadError": "No se pudo cargar el calendario.",
   "schedule.empty": "Los grupos aún no están definidos.",
@@ -71,5 +77,8 @@
   "schedule.eliminated": "Eliminado",
   "schedule.next": "Siguiente",
   "schedule.matches": "Próximos enfrentamientos",
-  "schedule.tbd": "Por definir"
+  "schedule.tbd": "Por definir",
+  "schedule.bracket": "Llaves",
+  "schedule.losersBracket": "Llaves de perdedores",
+  "start.tournament": "Ver torneo"
 }

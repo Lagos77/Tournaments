@@ -9,6 +9,8 @@ import youtubeIcon from "../../../assets/youtube.svg";
 import tiktokIcon from "../../../assets/tiktok.svg";
 import background from "../../../assets/schedule.png";
 import MatchDialog from "../dialog/MatchDialog";
+import TournamentBracket from "../bracket/TournamentBracket";
+import { BRACKET, LOSERS_BRACKET } from "../bracket/bracketData";
 import type { Match } from "../../../components/matches";
 import {
   toGroups,
@@ -21,7 +23,7 @@ const SCHEDULE_COLUMNS =
   "id, alias, country, avatar_url, tiktok, youtube, discord, twitch, group, is_next, eliminated, games_played, categories_played";
 
 const IS_YOUTUBE_LIVE = false;
-const IS_TIKTOK_LIVE = true;
+const IS_TIKTOK_LIVE = false;
 
 function useScheduledPlayers() {
   const [players, setPlayers] = useState<ScheduledPlayer[] | null>(null);
@@ -65,7 +67,9 @@ function ScheduleScreen() {
   const renderContent = () => {
     if (hasError) return <p>{t("schedule.loadError")}</p>;
     if (!players) return <div className="spinner" />;
-    if (groups.length === 0) return <p>{t("schedule.empty")}</p>;
+    if (groups.length === 0) {
+      return <p className="schedule-message">{t("schedule.empty")}</p>;
+    }
 
     return <GroupList groups={groups} onSelect={setSelectedGroup} />;
   };
@@ -109,6 +113,12 @@ function ScheduleScreen() {
       </nav>
 
       {renderContent()}
+
+      <TournamentBracket
+        title={t("schedule.losersBracket")}
+        node={LOSERS_BRACKET}
+      />
+      <TournamentBracket title={t("schedule.bracket")} node={BRACKET} />
 
       <MatchList onSelect={setSelectedMatch} />
 
