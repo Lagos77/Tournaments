@@ -1,9 +1,15 @@
+export type SlotStatus = "next" | "eliminated";
+
 export interface BracketNode {
   group: number | null;
+  status?: SlotStatus;
   feeders?: [BracketNode, BracketNode];
 }
 
-const team = (group: number | null): BracketNode => ({ group });
+const team = (group: number | null, status?: SlotStatus): BracketNode => ({
+  group,
+  status,
+});
 
 const match = (
   group: number | null,

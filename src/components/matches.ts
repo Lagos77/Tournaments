@@ -4,11 +4,17 @@ export interface Match {
   groupA: number | null;
   groupB: number | null;
   // ISO 8601 with the Stockholm offset (+01:00 in winter)
-  startsAt: string;
+  startsAt: string | null;
 }
 
 export const MATCHES: readonly Match[] = [
-  
+  {
+    id: 1,
+    round: 1,
+    groupA: null,
+    groupB: null,
+    startsAt: "2026-11-07",
+  },
 
 ];
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabaseClient";
 import { useLanguage } from "../../../i18n/useLanguage";
-import GroupList from "../list/GroupList";
 import GroupDialog from "../dialog/GroupDialog";
 import MatchList from "../list/MatchList";
 import LinkButton from "../../../buttons/LinkButton";
@@ -60,6 +59,11 @@ function ScheduleScreen() {
 
   const groups = players ? toGroups(players) : [];
 
+  const openGroup = (number: number) => {
+    const group = groups.find((g) => g.number === number);
+    if (group) setSelectedGroup(group);
+  };
+
   const closeDialog = () => {
     setSelectedGroup(null);
   };
@@ -112,13 +116,17 @@ function ScheduleScreen() {
         </div>
       </nav>
 
-      {renderContent()}
+      <TournamentBracket
+        title={t("schedule.bracket")}
+        node={BRACKET}
+        onSelectGroup={openGroup}
+      />
 
       <TournamentBracket
         title={t("schedule.losersBracket")}
         node={LOSERS_BRACKET}
+        onSelectGroup={openGroup}
       />
-      <TournamentBracket title={t("schedule.bracket")} node={BRACKET} />
 
       <MatchList onSelect={setSelectedMatch} />
 

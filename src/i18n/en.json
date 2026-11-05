@@ -79,6 +79,7 @@
   "schedule.matches": "Upcoming matches",
   "schedule.tbd": "To be decided",
   "schedule.bracket": "Bracket",
+  "schedule.bracketHint": "Click a group avatar to see its details.",
   "schedule.losersBracket": "Losers bracket",
   "start.tournament": "Watch tournament"
 }

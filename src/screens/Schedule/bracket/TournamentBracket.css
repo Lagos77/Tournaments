@@ -1,3 +1,4 @@
+/* Layout */
 .tournament-bracket {
   width: 100%;
   max-width: 36rem;
@@ -10,7 +11,9 @@
   font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  text-align: center;
   color: #ffd700;
+  white-space: pre-line;
 }
 
 .tournament-bracket__scroll {
@@ -31,6 +34,7 @@
   align-items: center;
 }
 
+/* Slot */
 .bracket-slot {
   display: flex;
   flex-direction: column;
@@ -39,9 +43,23 @@
   width: 3.25rem;
 }
 
+.bracket-slot--clickable {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.bracket-slot__avatar-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
 .bracket-slot__avatar {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 3.2rem;
+  height: 3.2em;
   border: 1px solid #0d5fa3;
   border-radius: 50%;
   object-fit: cover;
@@ -49,30 +67,64 @@
 
 .bracket-slot__label {
   font-family: "Orbitron", sans-serif;
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   font-weight: 700;
   text-align: center;
   color: #fff;
 }
 
+/* Slot status */
+.bracket-slot--next .bracket-slot__avatar {
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.85);
+}
+
+.bracket-slot--next .bracket-slot__label {
+  color: #ffd700;
+}
+
+.bracket-slot--eliminated .bracket-slot__avatar {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.bracket-slot--eliminated .bracket-slot__avatar-wrap::after {
+  content: "✕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  line-height: 1;
+  color: #ff2d2d;
+  text-shadow: 0 0 6px #000;
+}
+
+.bracket-slot--eliminated .bracket-slot__label {
+  color: #ff2d2d;
+}
+
+/* Connectors */
 .bracket-feeders {
   position: relative;
   display: flex;
   padding-bottom: var(--link);
 }
 
-.bracket-feeders::after {
+.bracket-feeder {
+  position: relative;
+  padding: 0 0.25rem var(--link);
+}
+
+.bracket-feeders::after,
+.bracket-feeder::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   height: var(--link);
   border-left: 2px solid var(--line);
-}
-
-.bracket-feeder {
-  position: relative;
-  padding: 0 0.25rem var(--link);
 }
 
 .bracket-feeder::before {
@@ -90,13 +142,4 @@
 
 .bracket-feeder:last-child::before {
   right: 50%;
-}
-
-.bracket-feeder::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  height: var(--link);
-  border-left: 2px solid var(--line);
 }
