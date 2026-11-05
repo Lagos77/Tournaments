@@ -12,7 +12,7 @@ interface MatchRowProps {
 }
 
 function MatchRow({ match, onSelect }: MatchRowProps) {
-  const { lang } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <button
@@ -26,8 +26,8 @@ function MatchRow({ match, onSelect }: MatchRowProps) {
         <span className="match-list__vs">vs</span>
         <MatchTeam number={match.groupB} />
       </span>
-      <time className="match-list__date" dateTime={match.startsAt}>
-        {formatStart(match.startsAt, lang)}
+      <time className="match-list__date" dateTime={match.startsAt ?? undefined}>
+        {formatStart(match.startsAt, lang) ?? t("schedule.tbd")}
       </time>
     </button>
   );

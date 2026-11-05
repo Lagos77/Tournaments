@@ -119,9 +119,9 @@ function MatchDialog({ match, groups, onClose }: MatchDialogProps) {
               </span>
               <time
                 className="match-dialog__date"
-                dateTime={shownMatch.startsAt}
+                dateTime={shownMatch.startsAt ?? undefined}
               >
-                {formatStart(shownMatch.startsAt, lang)}
+                {formatStart(shownMatch.startsAt, lang) ?? t("schedule.tbd")}
               </time>
             </header>
 

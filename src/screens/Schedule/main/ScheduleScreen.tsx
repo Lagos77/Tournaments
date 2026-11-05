@@ -68,16 +68,6 @@ function ScheduleScreen() {
     setSelectedGroup(null);
   };
 
-  const renderContent = () => {
-    if (hasError) return <p>{t("schedule.loadError")}</p>;
-    if (!players) return <div className="spinner" />;
-    if (groups.length === 0) {
-      return <p className="schedule-message">{t("schedule.empty")}</p>;
-    }
-
-    return <GroupList groups={groups} onSelect={setSelectedGroup} />;
-  };
-
   return (
     <main className="schedule-screen">
       <div
