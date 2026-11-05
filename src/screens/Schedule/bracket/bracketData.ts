@@ -3,7 +3,7 @@ export interface BracketNode {
   feeders?: [BracketNode, BracketNode];
 }
 
-const team = (group: number): BracketNode => ({ group });
+const team = (group: number | null): BracketNode => ({ group });
 
 const match = (
   group: number | null,
