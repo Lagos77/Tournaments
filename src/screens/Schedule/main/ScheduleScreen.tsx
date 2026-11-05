@@ -53,7 +53,7 @@ function useScheduledPlayers() {
 
 function ScheduleScreen() {
   const { t } = useLanguage();
-  const { players, hasError } = useScheduledPlayers();
+  const { players } = useScheduledPlayers();
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
