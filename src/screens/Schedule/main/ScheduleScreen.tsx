@@ -81,7 +81,7 @@ function ScheduleScreen() {
           <LinkButton
             variant="youtube"
             icon={youtubeIcon}
-            href="https://www.youtube.com/@your-channel"
+            href="https://www.youtube.com/@VLC-Games"
             disabled={!IS_YOUTUBE_LIVE}
           >
             YouTube
@@ -95,7 +95,7 @@ function ScheduleScreen() {
           <LinkButton
             variant="tiktok"
             icon={tiktokIcon}
-            href="https://www.tiktok.com/@your-channel"
+            href="https://www.tiktok.com/@real.vivalacat"
             disabled={!IS_TIKTOK_LIVE}
           >
             TikTok
