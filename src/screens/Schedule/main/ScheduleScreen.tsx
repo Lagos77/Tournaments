@@ -51,6 +51,36 @@ function useScheduledPlayers() {
   return { players, hasError };
 }
 
+function ScrollHint() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const update = () => {
+      const canScroll =
+        document.documentElement.scrollHeight > window.innerHeight + 40;
+      setIsVisible(canScroll && window.scrollY < 40);
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    const observer = new ResizeObserver(update);
+    observer.observe(document.body);
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div
+      className={`scroll-hint${isVisible ? "" : " scroll-hint--hidden"}`}
+      aria-hidden="true"
+    />
+  );
+}
+
 function ScheduleScreen() {
   const { t } = useLanguage();
   const { players } = useScheduledPlayers();
@@ -128,6 +158,8 @@ function ScheduleScreen() {
           setSelectedMatch(null);
         }}
       />
+
+      <ScrollHint />
     </main>
   );
 }

@@ -92,3 +92,36 @@
   text-align: center;
   color: #9fd3ff;
 }
+
+.scroll-hint {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+  margin-left: -0.5rem;
+  border-right: 3px solid #ffd700;
+  border-bottom: 3px solid #ffd700;
+  rotate: 45deg;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+  pointer-events: none;
+  transition: opacity 0.3s;
+  animation: scroll-hint-bounce 1.4s ease-in-out infinite;
+}
+
+.scroll-hint--hidden {
+  opacity: 0;
+}
+
+@keyframes scroll-hint-bounce {
+  50% {
+    translate: 0 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint {
+    animation: none;
+  }
+}
