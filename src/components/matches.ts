@@ -13,14 +13,14 @@ export const MATCHES: readonly Match[] = [
     round: 1,
     groupA: 1,
     groupB: 5,
-    startsAt: "2026-11-07",
+    startsAt: "2026-11-08",
   },
   {
     id: 2,
     round: 1,
     groupA: 7,
     groupB: 8,
-    startsAt: "2026-11-07",
+    startsAt: "2026-11-08",
   },
 ];
 
