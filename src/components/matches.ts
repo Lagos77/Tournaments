@@ -9,7 +9,14 @@ export interface Match {
 
 export const MATCHES: readonly Match[] = [
   {
-    id: 1,
+    id: 3,
+    round: 1,
+    groupA: 7,
+    groupB: 8,
+    startsAt: "2026-11-08",
+  },
+  {
+    id: 4,
     round: 1,
     groupA: 1,
     groupB: 5,
@@ -18,13 +25,21 @@ export const MATCHES: readonly Match[] = [
   {
     id: 2,
     round: 1,
-    groupA: 7,
-    groupB: 8,
-    startsAt: "2026-11-08",
+    groupA: 2,
+    groupB: 4,
+    startsAt: "2026-11-14",
+  },
+  {
+    id: 2,
+    round: 1,
+    groupA: 3,
+    groupB: 6,
+    startsAt: "2026-11-14",
   },
 ];
 
-      {/*
+{
+  /*
   {
     id: 1,
     round: 1,
@@ -39,4 +54,5 @@ export const MATCHES: readonly Match[] = [
     groupB: 4,
     startsAt: "2026-11-07T20:00:00+01:00",
   },
-          */}
+          */
+}
