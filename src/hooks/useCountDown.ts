@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const REGISTRATION_DEADLINE = new Date("2026-11-14T15:00:00+01:00");
+const REGISTRATION_DEADLINE = new Date("2026-11-15T09:00:00-05:00");
 
 export interface TimeLeft {
   days: number;
