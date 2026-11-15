@@ -21,7 +21,7 @@ import "./ScheduleScreen.css";
 const SCHEDULE_COLUMNS =
   "id, alias, country, avatar_url, tiktok, youtube, discord, twitch, group, is_next, eliminated, games_played, categories_played";
 
-const IS_YOUTUBE_LIVE = true;
+const IS_YOUTUBE_LIVE = false;
 const IS_TIKTOK_LIVE = false;
 
 function useScheduledPlayers() {
