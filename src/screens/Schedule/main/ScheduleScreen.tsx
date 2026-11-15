@@ -111,7 +111,7 @@ function ScheduleScreen() {
           <LinkButton
             variant="youtube"
             icon={youtubeIcon}
-            href="https://www.youtube.com/watch?v=ZSBnFQn6B2c"
+            href="https://www.youtube.com/@darkliondecopas9999"
             disabled={!IS_YOUTUBE_LIVE}
           >
             YouTube
