@@ -22,7 +22,7 @@ export const BRACKET: BracketNode = match(
   match(
     null,
     match(5, team(1), team(5)),
-    match(null, team(2, "next"), team(4, "next"))
+    match(4, team(2), team(4))
   ),
   match(
     null,
@@ -34,5 +34,5 @@ export const BRACKET: BracketNode = match(
 export const LOSERS_BRACKET: BracketNode = match(
   null,
   match(null, team(1), team(8)),
-  match(null, team(null), team(null))
+  match(null, team(2), team(null))
 );
