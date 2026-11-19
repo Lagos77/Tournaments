@@ -14,8 +14,9 @@ const team = (group: number | null, status?: SlotStatus): BracketNode => ({
 const match = (
   group: number | null,
   first: BracketNode,
-  second: BracketNode
-): BracketNode => ({ group, feeders: [first, second] });
+  second: BracketNode,
+  status?: SlotStatus
+): BracketNode => ({ group, status, feeders: [first, second] });
 
 export const BRACKET: BracketNode = match(
   null,
@@ -26,8 +27,8 @@ export const BRACKET: BracketNode = match(
   ),
   match(
     null,
-    match(3, team(3), team(6)),
-    match(7, team(7), team(8))
+    match(3, team(3), team(6), "next"),
+    match(7, team(7), team(8), "next")
   )
 );
 

@@ -35,15 +35,13 @@ export const MATCHES: readonly Match[] = [
     groupA: 2,
     groupB: 4,
     startsAt: "2026-11-15T09:00:00-05:00",
-
   },
   {
     id: 5,
     round: 2,
-    groupA: null,
-    groupB: null,
-    startsAt: "2026-11-21",
-
+    groupA: 3,
+    groupB: 7,
+    startsAt: "2026-11-21T21:00:00-05:00",
   },
 ];
 
