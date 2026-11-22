@@ -21,14 +21,14 @@ const match = (
 export const BRACKET: BracketNode = match(
   null,
   match(
-    null,
-    match(5, team(1), team(5), "next"),
-    match(4, team(2), team(4), "next")
+    4,
+    match(5, team(1), team(5)),
+    match(4, team(2), team(4))
   ),
   match(
-    null,
-    match(3, team(3), team(6), "next"),
-    match(7, team(7), team(8), "next")
+    3,
+    match(3, team(3), team(6)),
+    match(7, team(7), team(8))
   )
 );
 
