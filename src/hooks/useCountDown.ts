@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-const REGISTRATION_DEADLINE = new Date("2026-11-21T21:00:00-05:00");
+import { useStreamState } from "./useStreamState";
 
 export interface TimeLeft {
   days: number;
@@ -10,8 +9,10 @@ export interface TimeLeft {
   milliseconds: number;
 }
 
-function getTimeLeft(): TimeLeft | null {
-  const diff = REGISTRATION_DEADLINE.getTime() - Date.now();
+function getTimeLeft(target: Date | null): TimeLeft | null {
+  if (!target) return null;
+
+  const diff = target.getTime() - Date.now();
   if (diff <= 0) return null;
 
   return {
@@ -24,17 +25,19 @@ function getTimeLeft(): TimeLeft | null {
 }
 
 export function useCountDown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  const { isLive, nextStart } = useStreamState();
+  const target = isLive ? null : nextStart;
+  const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(target));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(getTimeLeft());
+      setTimeLeft(getTimeLeft(target));
     }, 10);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [target]);
 
   return timeLeft;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabaseClient";
 import { useLanguage } from "../../../i18n/useLanguage";
+import { useStreamState } from "../../../hooks/useStreamState";
 import GroupDialog from "../dialog/GroupDialog";
 import MatchList from "../list/MatchList";
 import LinkButton from "../../../buttons/LinkButton";
@@ -21,8 +22,7 @@ import "./ScheduleScreen.css";
 const SCHEDULE_COLUMNS =
   "id, alias, country, avatar_url, tiktok, youtube, discord, twitch, group, is_next, eliminated, games_played, categories_played";
 
-const IS_YOUTUBE_LIVE = false;
-const IS_TIKTOK_LIVE = false;
+const IS_TIKTOK_LIVE = false as boolean;
 
 function useScheduledPlayers() {
   const [players, setPlayers] = useState<ScheduledPlayer[] | null>(null);
@@ -84,6 +84,7 @@ function ScrollHint() {
 function ScheduleScreen() {
   const { t } = useLanguage();
   const { players } = useScheduledPlayers();
+  const { isLive: isYoutubeLive } = useStreamState();
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
@@ -112,11 +113,11 @@ function ScheduleScreen() {
             variant="youtube"
             icon={youtubeIcon}
             href="https://www.youtube.com/@darkliondecopas9999"
-            disabled={!IS_YOUTUBE_LIVE}
+            disabled={!isYoutubeLive}
           >
             YouTube
           </LinkButton>
-          {IS_YOUTUBE_LIVE && (
+          {isYoutubeLive && (
             <span className="stream-link__live">{t("schedule.live")}</span>
           )}
         </div>

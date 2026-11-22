@@ -22,8 +22,8 @@ export const BRACKET: BracketNode = match(
   null,
   match(
     null,
-    match(5, team(1), team(5)),
-    match(4, team(2), team(4))
+    match(5, team(1), team(5), "next"),
+    match(4, team(2), team(4), "next")
   ),
   match(
     null,
