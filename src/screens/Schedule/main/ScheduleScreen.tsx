@@ -22,7 +22,7 @@ import "./ScheduleScreen.css";
 const SCHEDULE_COLUMNS =
   "id, alias, country, avatar_url, tiktok, youtube, discord, twitch, group, is_next, eliminated, games_played, categories_played";
 
-const IS_TIKTOK_LIVE = true as boolean;
+const IS_TIKTOK_LIVE = false as boolean;
 
 function useScheduledPlayers() {
   const [players, setPlayers] = useState<ScheduledPlayer[] | null>(null);
