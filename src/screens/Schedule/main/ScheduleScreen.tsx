@@ -143,6 +143,7 @@ function ScheduleScreen() {
         onSelectGroup={openGroup}
       />
 
+
       <TournamentBracket
         title={t("schedule.losersBracket")}
         node={LOSERS_BRACKET}

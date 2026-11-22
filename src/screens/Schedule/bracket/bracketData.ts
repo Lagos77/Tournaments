@@ -22,13 +22,15 @@ export const BRACKET: BracketNode = match(
   null,
   match(
     4,
-    match(5, team(1), team(5)),
-    match(4, team(2), team(4))
+    match(5, team(1, "eliminated"), team(5, "eliminated"), "eliminated"),
+    match(4, team(2, "eliminated"), team(4)),
+    "next"
   ),
   match(
     3,
-    match(3, team(3), team(6)),
-    match(7, team(7), team(8))
+    match(3, team(3), team(6, "eliminated")),
+    match(7, team(7, "eliminated"), team(8, "eliminated"), "eliminated"),
+    "next"
   )
 );
 
