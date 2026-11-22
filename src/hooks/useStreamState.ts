@@ -5,7 +5,7 @@ const STREAM_DURATION_MS = 3 * 60 * 60 * 1000;
 // Add every start time here, in order.
 const STREAM_STARTS: readonly Date[] = [
   new Date("2026-11-21T21:00:00-05:00"),
-  new Date("2026-11-22T09:00:00-05:00"),
+  new Date("2026-11-22T10:00:00-05:00"),
 ];
 
 interface StreamState {
